@@ -1,8 +1,8 @@
-TOC_agsjs_dijit
+TOC dijit
 ===============
 This is a customization of a Dojo Dijit for showing a generic table of map contents on a map created in the ESRI ArcGIS Javascript API.
 
-This version is based on the source for the v2.10 version available [here](//www.arcgis.com/home/item.html?id=9b6280a6bfb0430f8d1ebc969276b109).
+This version is based on the source for the v2.10 version of the *Table of Contents (TOC)/Legend Widget for JavaScript API* by Nianwei Liu available [here](//www.arcgis.com/home/item.html?id=9b6280a6bfb0430f8d1ebc969276b109).
 
 ### Differences in this version:
 
