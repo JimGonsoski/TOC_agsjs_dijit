@@ -220,7 +220,7 @@ define("agsjs/dijit/TOC",
                  );
              }
              //if (!this.rootLayerTOC.config.noLegend) { // JAG
-             if (!this.rootLayerTOC.config.noSubLayers) {
+             if (!this.rootLayerTOC.config.noSubLayers) { // JAG
                  if (rootLayer._tocInfos) {
                      this._createChildrenNodes(rootLayer._tocInfos, 'serviceLayer');
                  } else if (rootLayer.renderer) {
@@ -699,17 +699,19 @@ define("agsjs/dijit/TOC",
                          }
                      });
                  }
-                 // nest layer Infos
-                 array.forEach(layer.layerInfos, function (layerInfo) {
-                     if (layerInfo.subLayerIds) {
-                         var subLayerInfos = [];
-                         array.forEach(layerInfo.subLayerIds, function (id, i) {
-                             subLayerInfos[i] = layerLookup[id];
-                             subLayerInfos[i]._parentLayerInfo = layerInfo;
-                         });
-                         layerInfo._subLayerInfos = subLayerInfos;
-                     }
-                 });
+                 if (!this.config.noSubLayers) { // JAG modified to ignore this for basemap structures.
+                     // nest layer Infos
+                     array.forEach(layer.layerInfos, function (layerInfo) {
+                         if (layerInfo.subLayerIds) {
+                             var subLayerInfos = [];
+                             array.forEach(layerInfo.subLayerIds, function (id, i) {
+                                 subLayerInfos[i] = layerLookup[id];
+                                 subLayerInfos[i]._parentLayerInfo = layerInfo;
+                             });
+                             layerInfo._subLayerInfos = subLayerInfos;
+                         }
+                     });
+                 }
                  //2012-07-21: if setVisibility is called before this widget is built, we want to use the actual visibility instead of the layerInfo.
 
                  //finalize the tree structure in _tocInfos, skipping all sublayers because they were nested already.
