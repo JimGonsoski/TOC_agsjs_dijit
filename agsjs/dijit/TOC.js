@@ -5,7 +5,7 @@
  * <p>A TOC (Table of Contents) widget for ESRI ArcGIS Server JavaScript API. The namespace is <code>agsjs</code></p>
  */
 // change log: 
-// JAG : add a noSubLayers attribute to prevent any details displaying
+// JAG : add a noSubLayers attribute to prevent any details displaying, skip handling subLayer if none to display
 // JAG : expanding a group no longer switches on all sublayers
 // JAG : 
 
@@ -647,14 +647,14 @@ define("agsjs/dijit/TOC",
          _getLegendInfo: function () {
 
              var url = '';
-             if (this.rootLayer.version >= 10.01) {
+             //if (this.rootLayer.version >= 10.01) {  // JAG remove this check for version
                  url = this.rootLayer.url + '/legend';
-             } else {
-                 url = 'http://www.arcgis.com/sharing/tools/legend';
-                 var i = this.rootLayer.url.toLowerCase().indexOf('/rest/');
-                 var soap = this.rootLayer.url.substring(0, i) + this.rootLayer.url.substring(i + 5);
-                 url = url + '?soapUrl=' + escape(soap);
-             }
+             //} else {
+             //    url = 'http://www.arcgis.com/sharing/tools/legend';
+             //    var i = this.rootLayer.url.toLowerCase().indexOf('/rest/');
+             //    var soap = this.rootLayer.url.substring(0, i) + this.rootLayer.url.substring(i + 5);
+             //    url = url + '?soapUrl=' + escape(soap);
+             //}
              var handle = esri.request({
                  url: url,
                  content: {
